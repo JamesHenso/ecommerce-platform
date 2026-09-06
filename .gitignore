@@ -1,0 +1,48 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules
+pnpm-debug.log
+
+# Lock files
+skills-lock.json
+
+# Build & Output
+dist/
+build/
+*.tsbuildinfo
+
+# Prisma
+/generated/prisma
+prisma/dev.db
+prisma/dev.db-journal
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*.iml
+.DS_Store
+Thumbs.db
+
+# Local development tools
+.agents/
+.claude/
+.windsurf/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary
+.turbo/
+tmp/
+temp/
+.cache/
