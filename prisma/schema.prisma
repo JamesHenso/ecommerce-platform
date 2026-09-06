@@ -1,0 +1,136 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role{
+  CUSTOMER
+  ADMIN
+}
+
+enum OrderStatus{
+  PENDING
+  PAID
+  CANCELLED
+}
+
+enum PaymentStatus{
+  PENDING
+  SUCCESS
+  FAILED
+}
+
+model User{
+  id String @id @default(uuid())
+  email String @unique
+  password String
+  name String?
+  role Role @default(CUSTOMER)
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+
+  cart Cart?
+  orders Order[]
+
+  @@map("users")
+}
+
+model Category{
+  id String @id @default(uuid())
+  name String @unique
+  description String?
+
+  products Product[]
+
+  @@map("categories")
+}
+
+model Product{
+  id String @id @default(ulid())
+  name String
+  description String
+  price Decimal @db.Decimal(10,2)
+  stock Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  categoryId String
+  category Category @relation(fields: [categoryId], references: [id])
+
+  cartItems CartItem[]
+  orderItems OrderItem[]
+
+  @@map("products")
+}
+
+model Cart{
+  id String @id @default(ulid())
+  userId String @unique
+  user User @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  cartItems CartItem[]
+
+  @@map("carts")
+}
+
+model CartItem{
+  id String @id @default(uuid())
+  cartId String
+  cart Cart @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  productId String
+  product Product @relation(fields: [productId], references: [id])
+  quantity Int @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([cartId, productId])
+
+  @@map("cart_items")
+}
+
+model Order{
+  id String @id @default(uuid())
+  userId String
+  user User @relation(fields: [userId], references: [id])
+  totalAmount Decimal @db.Decimal(10,2)
+  status OrderStatus @default(PENDING)
+  address String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  oderItems OrderItem[]
+  payment Payment?
+
+  @@map("orders")
+}
+
+model OrderItem{
+  id String @id @default(uuid())
+  orderId String
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product Product @relation(fields: [productId], references: [id])
+  quantity Int @default(1)
+  price Decimal @db.Decimal(10,2)
+
+  @@map("order_items")
+}
+
+model Payment{
+  id String @id @default(ulid())
+  orderId String @unique
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  provider String @default("STRIPE")
+  transactionId String? @unique // Stripe payment intent id
+  amount Decimal @db.Decimal(10,2)
+  status PaymentStatus @default(PENDING)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("payments")
+}
