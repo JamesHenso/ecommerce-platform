@@ -1,6 +1,8 @@
 allowBuilds:
   '@prisma/engines': true
+  bcrypt: true
   esbuild: true
   msgpackr-extract: true
   prisma: true
   workerd: true
+storeDir: /home/huukhanh/snap/code/260/.local/share/pnpm/store/v11
