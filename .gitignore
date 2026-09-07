@@ -33,6 +33,7 @@ Thumbs.db
 .agents/
 .claude/
 .windsurf/
+client.REST
 
 # Logs
 logs/
