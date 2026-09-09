@@ -14,7 +14,7 @@ export const createProductSchema = z.object({
         name: z.string().min(1, "Name of product must contain character"),
         description: z.string().optional(),
         price: z.number().positive("Price must be positive"),
-        stock: z.number().nonnegative("Stock is nonnegative"),
+        stock: z.number().int().nonnegative("Stock is nonnegative"),
         categoryId: z.uuid("ID is invalid")
     })
 })
@@ -28,7 +28,7 @@ export const updateProductSchema = z.object({
         name: z.string().min(1).optional(),
         description: z.string().optional(),
         price: z.number().positive().optional(),
-        stock: z.number().nonnegative().optional(),
+        stock: z.number().int().nonnegative().optional(),
         categoryId: z.uuid().optional()
     })
 })
