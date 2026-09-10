@@ -8,11 +8,11 @@ import {
   deleteCartItemSchema,
 } from "./cart.schema.js";
 
-export const cartRoutes = Router()
+export const cartRouter = Router()
 
-cartRoutes.use(authenticate)
+cartRouter.use(authenticate)
 
-cartRoutes.get("/", cartController.handleGetCart)
-cartRoutes.post("/items", validate(addToCartSchema), cartController.handleAddItemToCart)
-cartRoutes.put("/items/:id", validate(updateCartItemSchema), cartController.handleUpdateCartItem)
-cartRoutes.delete("/items/:id", validate(deleteCartItemSchema), cartController.handleDeleteCartItem)
+cartRouter.get("/", cartController.handleGetCart)
+cartRouter.post("/items", validate(addToCartSchema), cartController.handleAddItemToCart)
+cartRouter.put("/items/:id", validate(updateCartItemSchema), cartController.handleUpdateCartItem)
+cartRouter.delete("/items/:id", validate(deleteCartItemSchema), cartController.handleDeleteCartItem)
