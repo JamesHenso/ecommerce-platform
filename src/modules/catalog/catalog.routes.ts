@@ -10,13 +10,13 @@ import {
   getProductQuerySchema,
 } from "./catalog.schema.js";
 
-export const catalogRoutes = Router()
+export const catalogRouter = Router()
 
-catalogRoutes.get("/categories", catalogController.handleGetCategories)
-catalogRoutes.get("/products", validate(getProductQuerySchema), catalogController.handleGetProducts)
-catalogRoutes.get("/products/:id", catalogController.handleGetProductById)
+catalogRouter.get("/categories", catalogController.handleGetCategories)
+catalogRouter.get("/products", validate(getProductQuerySchema), catalogController.handleGetProducts)
+catalogRouter.get("/products/:id", catalogController.handleGetProductById)
 
-catalogRoutes.post(
+catalogRouter.post(
     "/categories", 
     authenticate,
     authorize([Role.ADMIN]),
@@ -24,7 +24,7 @@ catalogRoutes.post(
     catalogController.handleCreateCategory
 )
 
-catalogRoutes.post(
+catalogRouter.post(
     "/products",
     authenticate,
     authorize([Role.ADMIN]),
@@ -32,7 +32,7 @@ catalogRoutes.post(
     catalogController.handleCreateProduct
 )
 
-catalogRoutes.put(
+catalogRouter.put(
     "/products/:id",
     authenticate,
     authorize([Role.ADMIN]),
@@ -40,7 +40,7 @@ catalogRoutes.put(
     catalogController.handleUpdateProduct
 )
 
-catalogRoutes.delete(
+catalogRouter.delete(
     "/products/:id",
     authenticate,
     authorize([Role.ADMIN]),
