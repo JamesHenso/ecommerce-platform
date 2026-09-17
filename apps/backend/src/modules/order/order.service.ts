@@ -1,5 +1,5 @@
 import { prisma } from "../../config/prisma.js";
-import { AppError } from "../../utils/appError.js";
+import { AppError } from "../../common/utils/appError.js";
 import { CheckoutInput, getOrderByIdSchema } from "./order.schema.js";
 import { Prisma } from "@prisma/client";
 import { Decimal } from "@prisma/client/runtime/client";

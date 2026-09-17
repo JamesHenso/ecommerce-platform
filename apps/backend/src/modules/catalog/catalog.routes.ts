@@ -1,14 +1,15 @@
 import { Router } from "express";
 import { Role } from "@prisma/client";
 import * as catalogController from "./catalog.controller.js"
-import { validate } from "../../middlewares/validate.middleware.js";
-import { authenticate, authorize } from "../../middlewares/auth.middleware.js";
+import { validate } from "../../common/middleware/validate.middleware.js";
+import { authenticate, authorize } from "../../common/middleware/auth.middleware.js"
 import {
   createCategorySchema,
   createProductSchema,
   updateProductSchema,
   getProductQuerySchema,
 } from "./catalog.schema.js";
+import { from } from "node:stream/iter";
 
 export const catalogRouter = Router()
 

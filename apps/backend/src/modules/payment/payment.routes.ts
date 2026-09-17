@@ -1,7 +1,6 @@
 import { Router } from "express";
 import * as paymentController from "./payment.controller.js"
-import { authenticate } from "../../middlewares/auth.middleware.js";
-
+import { authenticate } from "../../common/middleware/auth.middleware.js";
 const paymentRouter = Router()
 
 paymentRouter.post(

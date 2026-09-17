@@ -1,7 +1,7 @@
 import { Router } from "express";
 import * as cartController from "./cart.controller.js";
-import { authenticate } from "../../middlewares/auth.middleware.js";
-import { validate } from "../../middlewares/validate.middleware.js";
+import { authenticate } from "../../common/middleware/auth.middleware.js";
+import { validate } from "../../common/middleware/validate.middleware.js";
 import {
   addToCartSchema,
   updateCartItemSchema,

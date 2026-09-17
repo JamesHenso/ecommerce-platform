@@ -1,4 +1,3 @@
-import "dotenv/config";
 import express from "express";
 import { authRouter } from "./modules/auth/auth.routes.js";
 import { catalogRouter } from "./modules/catalog/catalog.routes.js";
@@ -6,10 +5,11 @@ import { cartRouter } from "./modules/cart/cart.routes.js";
 import { orderRouter } from "./modules/order/order.routes.js";
 import { paymentRouter } from "./modules/payment/payment.routes.js";
 import * as paymentController from "./modules/payment/payment.controller.js";
-import { errorHandler } from "./middlewares/error.middleware.js";
+import { errorHandler } from "./common/middleware/error.middleware.js";
+import { env } from "./config/env.js";
 
 const app = express();
-const port = Number(process.env.PORT ?? 3000);
+const port = Number(env.PORT);
 
 app.post(
   "/api/payment/webhook",
