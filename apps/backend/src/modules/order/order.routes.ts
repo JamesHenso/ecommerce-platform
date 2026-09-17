@@ -1,8 +1,8 @@
 import { Router } from "express"
-import { validate } from "../../middlewares/validate.middleware.js"
+import { validate } from "../../common/middleware/validate.middleware.js"
 import { checkoutSchema, getOrderByIdSchema } from "./order.schema.js"
 import * as orderController from "./order.controller.js"
-import { authenticate } from "../../middlewares/auth.middleware.js"
+import { authenticate } from "../../common/middleware/auth.middleware.js"
 
 
 export const orderRouter = Router()

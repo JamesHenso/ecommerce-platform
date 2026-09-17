@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 import { prisma } from "../../config/prisma.js";
-import { AppError } from "../../utils/appError.js";
+import { AppError } from "../../common/utils/appError.js";
 import { CreateProductInput, GetProductsQuery, UpdateProductInput } from "./catalog.schema.js";
 
 // CATEGORY

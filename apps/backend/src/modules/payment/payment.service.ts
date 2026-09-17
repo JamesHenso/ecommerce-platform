@@ -1,7 +1,7 @@
 import { prisma } from "../../config/prisma.js";
 import { stripe } from "../../config/stripe.js";
 import Stripe from "stripe";
-import { AppError } from "../../utils/appError.js";
+import { AppError } from "../../common/utils/appError.js";
 
 const CLIENT_URL = process.env.CLIENT_URL
 

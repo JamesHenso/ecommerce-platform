@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt"
 import { LoginInput, RegisterInput } from "./auth.schema.js"
 import { prisma } from "../../config/prisma.js"
-import { AppError } from "../../utils/appError.js"
-import { signToken } from "../../utils/jwt.js"
+import { AppError } from "../../common/utils/appError.js"
+import { signToken } from "../../common/utils/jwt.js"
 
 const SALT_ROUNDS = 10
 export const registerUser = async (data: RegisterInput) => {

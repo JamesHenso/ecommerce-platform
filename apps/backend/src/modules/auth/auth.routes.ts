@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { registerSchema, loginSchema } from "./auth.schema.js";
-import { validate } from "../../middlewares/validate.middleware.js";
-import { authenticate, authorize } from "../../middlewares/auth.middleware.js";
+import { validate } from "../../common/middleware/validate.middleware.js"
+import { authenticate, authorize } from "../../common/middleware/auth.middleware.js"
 import { Role } from "@prisma/client";
 import * as authController from "./auth.controller.js"
 
